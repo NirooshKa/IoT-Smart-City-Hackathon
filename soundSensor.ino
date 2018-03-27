@@ -12,11 +12,16 @@ int duration, cm;
 void setup() 
 {
   Serial.begin(9600);
+  
+  //SENSOR PINS
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
+  
+  //STREETLIGHT PINS
   pinMode(ledOne, OUTPUT);
   pinMode(ledTwo, OUTPUT);
   pinMode(ledThree, OUTPUT);
+  
 }
 
 void loop()
@@ -36,10 +41,12 @@ void loop()
   delay(100);
 
   /*2. With the distances and sounds measured from before,
-  *- We are going to determine which lights to turn on
+  * We are going to determine which lights to turn on,
+  * and which lights to turn off to ensure the car can see
+  * its surroundings
   */
   
-  //2.1: 30cm away from the sensor
+  //2.1: The last streetlight turns on after you pass the other two
    if (cm >= 3 && cm <7){
       digitalWrite(ledOne, HIGH);
       digitalWrite(ledTwo, LOW);
@@ -47,7 +54,7 @@ void loop()
       delay(3000);
    }
 
-  //2.2: 65cm away from the sensor
+  //2.2: Two streetlights turn on after you pass the first one behind it
    else if (cm >= 7 && cm < 15){
       digitalWrite(ledOne, HIGH); 
       digitalWrite(ledTwo, HIGH);
@@ -55,7 +62,7 @@ void loop()
       delay(3000);
    }
 
-  //2.3: 105cm away from the sensor
+  //2.3: All of the lights turn on right when a car is present within a 5cm radius
    else if (cm >= 15 && cm <19){
       digitalWrite(ledOne, HIGH); 
       digitalWrite(ledTwo, HIGH);
