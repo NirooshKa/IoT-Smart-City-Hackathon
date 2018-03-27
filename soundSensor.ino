@@ -21,13 +21,11 @@ void setup()
   pinMode(ledOne, OUTPUT);
   pinMode(ledTwo, OUTPUT);
   pinMode(ledThree, OUTPUT);
-  
 }
 
 void loop()
 {
-  /*1. The distance between the car and the person gets measured
-  *
+  /*1. The distance between the car and the person/vehicle gets measured
   */
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -37,7 +35,7 @@ void loop()
   duration= pulseIn(echoPin,HIGH);
   cm=(duration*0.034)/2; //This is the distance away from the sensor in cm
   Serial.print("Distance: ");
-  Serial.println(cm), 
+  Serial.println(cm);
   delay(100);
 
   /*2. With the distances and sounds measured from before,
@@ -74,7 +72,6 @@ void loop()
     digitalWrite(ledOne, LOW);
     digitalWrite(ledTwo, LOW);
     digitalWrite(ledThree, LOW);
-
 }
 
 /*------ PIR MOTION DETECTOR CODE (WITHOUT BJT) -----------
@@ -103,6 +100,5 @@ void loop(){
       Serial.println("Motion absent");
       delay(10000);
     }
-  
 }
 */
